@@ -1,5 +1,7 @@
 "use client";
 
+import { USER_ROLE } from "@/constants/role";
+import sideBarItems from "@/constants/sideBarItems";
 import {
   DesktopOutlined,
   FileOutlined,
@@ -43,6 +45,7 @@ const items: MenuItem[] = [
 ];
 const SideBar = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const role = USER_ROLE.ADMIN;
   return (
     <>
       <Sider
@@ -51,11 +54,12 @@ const SideBar = () => {
         onCollapse={(value) => setCollapsed(value)}
       >
         <div className="demo-logo-vertical" />
+        <h1 className="text-white text-2xl">PH Univarsity</h1>
         <Menu
           theme="dark"
           defaultSelectedKeys={["1"]}
           mode="inline"
-          items={items}
+          items={sideBarItems(role)}
         />
       </Sider>
     </>
