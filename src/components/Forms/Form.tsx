@@ -24,7 +24,7 @@ const Form = ({ children, submitHandler, defaultValues }: FormProps) => {
   return (
     <div>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>{children}</form>
+        <form onSubmit={handleSubmit(onSubmit)}>{children}</form>
       </FormProvider>
     </div>
   );
