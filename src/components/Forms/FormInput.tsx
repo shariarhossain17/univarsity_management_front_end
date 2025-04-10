@@ -4,43 +4,35 @@ import { Input } from "antd";
 import { Controller, useFormContext } from "react-hook-form";
 
 interface IInput {
-  type: string;
   name: string;
-  size: "large" | "small";
-  id: string;
-  value: string;
+  type?: string;
+  size?: "large" | "small";
   placeholder?: string;
-  validate?: object;
   label?: string;
 }
+
 const FormInput = ({
   name,
-  type,
-  size,
-  value,
-  id,
+  type = "text",
+  size = "large",
   placeholder,
-  validate,
   label,
 }: IInput) => {
   const { control } = useFormContext();
+
   return (
-    <>
-      {label ? label : null}
+    <div style={{ marginBottom: 16 }}>
+      {label && (
+        <label style={{ display: "block", marginBottom: 4 }}>{label}</label>
+      )}
       <Controller
-        control={control}
         name={name}
+        control={control}
         render={({ field }) => (
-          <Input
-            type={type}
-            placeholder={placeholder}
-            size={size}
-            {...field}
-            value={value ? value : field.value}
-          />
+          <Input {...field} type={type} placeholder={placeholder} size={size} />
         )}
       />
-    </>
+    </div>
   );
 };
 
